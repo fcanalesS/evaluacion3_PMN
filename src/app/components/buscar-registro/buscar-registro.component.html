@@ -1,0 +1,61 @@
+<div class="container" style="margin-top: 1em;">
+  <form novalidate [formGroup]="busquedaPaciente" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-3">
+        <label for="">Sexo</label>
+        <select class="form-control" formControlName="sexo">
+          <option value="masculino">Masculino</option>
+          <option value="femenino">Femenino</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label>Fecha de Ingreso</label>
+        <input type="date" formControlName="fechaIngreso" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label>Enfermedad</label>
+        <input type="text" formControlName="enfermedad" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="" style="display: block">&nbsp;</label>
+        <button class="btn btn-success">Buscar</button>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>Rut Paciente</th>
+          <th>Nombre Paciente</th>
+          <th>Edad Paciente</th>
+          <th>Sexo</th>
+          <th>Fecha Ingreso</th>
+          <th>Enfermedad</th>
+          <th>Revisado</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let p of pacienteModel">
+            <tr>
+              <td>{{p.rut}}</td>
+              <td>{{p.nombre}}</td>
+              <td>{{p.edad}}</td>
+              <td>{{p.sexo}}</td>
+              <td>{{p.fechaIngreso | date: 'dd/MM/YYYY'}}</td>
+              <td>{{p.enfermedad}}</td>
+              <td>{{p.revisado === false ? 'OK' : 'NOK'}}</td>
+              <td>
+                <a routerLink="/registro/actualizar/{{p._id}}" class="btn btn-warning">Modificar</a>
+                <button class="btn btn-danger" (click)="eliminarPaciente(p._id)" >Eliminar</button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

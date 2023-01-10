@@ -1,0 +1,23 @@
+<div class="container" style="margin-top: 1em;">
+  <div class="row">
+    <ng-container *ngFor="let p of pacienteModel">
+      <div class="col-md-6" style="margin-bottom: 1em;">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-text">
+              <img class="card-img-top img-fluid img-thumb" src="{{apiUrl + 'getFotoPersonal/' + p._id}}" alt="">
+              <ul style="list-style: none" class="text-center">
+                <li>{{p.nombre}}</li>
+                <li>{{p.sexo}}</li>
+              </ul>
+              <hr>
+              <div class="d-grid gap-2 d-md-block text-center">
+                <a class="btn btn-primary" routerLink="/registro/detalle/{{p._id}}" (click)="enviarID(p._id)">Información Detallada</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

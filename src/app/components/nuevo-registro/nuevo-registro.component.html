@@ -1,0 +1,37 @@
+<div class="container">
+  <form novalidate [formGroup]="paciente" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="">Rut de Paciente</label>
+      <input type="text" class="form-control" formControlName="rut">
+    </div>
+    <div class="mb-3">
+      <label for="">Nombre del Paciente</label>
+      <input type="text" class="form-control" formControlName="nombre">
+    </div>
+    <div class="mb-3">
+      <label for="">Edad</label>
+      <input type="text" class="form-control" formControlName="edad">
+    </div>
+    <div class="mb-3">
+      <label for="">Sexo</label>
+      <select class="form-control" formControlName="sexo">
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="">Fecha de Ingreso</label>
+      <input type="date" class="form-control" formControlName="fechaIngreso">
+    </div>
+    <div class="mb-3">
+      <label for="">Enfermedad</label>
+      <textarea formControlName="enfermedad" id="" cols="30" rows="2" class="form-control"  ></textarea>
+    </div>
+    <div className="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="revisado" formControlName="revisado" ref={this.revisadoRef} onChange={this.changeState} />
+      <label className="form-check-label" htmlFor="exampleCheck1">Revisado</label>
+    </div>
+    <hr>
+    <button type="submit" class="btn btn-success">Guardar</button>
+  </form>
+</div>

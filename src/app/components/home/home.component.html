@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Bienvenido</h3>
+      <p>Listado de pacientes recientes</p>
+    </div>
+    <br>
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>Rut Paciente</th>
+          <th>Nombre Paciente</th>
+          <th>Edad Paciente</th>
+          <th>Sexo</th>
+          <th>Fecha Ingreso</th>
+          <th>Enfermedad</th>
+          <th>Revisado</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let p of pacienteModel">
+          <tr>
+            <td>{{p.rut}}</td>
+            <td>{{p.nombre}}</td>
+            <td>{{p.edad}}</td>
+            <td>{{p.sexo}}</td>
+            <td>{{p.fechaIngreso | date: 'dd/MM/YYYY'}}</td>
+            <td>{{p.enfermedad}}</td>
+            <td>{{p.revisado}}</td>
+            <td>
+              <a routerLink="/registro/actualizar/{{p._id}}" class="btn btn-warning">Modificar</a>
+              <button class="btn btn-danger" (click)="eliminarPaciente(p._id)" >Eliminar</button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

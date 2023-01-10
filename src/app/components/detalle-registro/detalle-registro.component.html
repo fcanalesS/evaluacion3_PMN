@@ -1,0 +1,73 @@
+<div class="container" style="margin-top: 1em;">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>Detalle del Paciente</h3>
+      <hr>
+      <div class="form-group">
+        <label for="">Rut Paciente</label>
+        <input class="form-control" readOnly="readonly" [value]="paciente_.rut"/>
+      </div>
+      <div class="form-group">
+        <label htmlFor="">Nombre Paciente</label>
+        <input class="form-control" name="nombre" [value]="paciente_.nombre" readOnly="readonly"/>
+      </div>
+      <div class="form-group">
+        <label htmlFor="">Edad</label>
+        <input class="form-control" name="edad" [value]="paciente_.edad" readOnly="readonly"/>
+      </div>
+      <div class="form-group">
+        <label htmlFor="">Sexo</label>
+        <select name="" class="form-control" name="sexo" readOnly="readonly">
+          <div *ngIf="paciente_.sexo === 'masculino';then content else other_content">here is ignored</div>
+          <ng-template #content>
+            <option value="masculino" selected>Masculino</option>
+            <option value="femenino">Femenino</option>
+          </ng-template>
+          <ng-template #other_content>
+            <option value="masculino">Masculino</option>
+            <option value="femenino" selected>Femenino</option>
+          </ng-template>
+        </select>
+      </div>
+      <div class="form-group">
+        <label htmlFor="">Fecha de Ingreso</label>
+        <input type="date" class="form-control" name="fechaIngreso"
+               [value]="paciente_.fechaIngreso | date: 'yyyy-MM-dd'" readOnly="readonly"/>
+      </div>
+      <div class="form-group">
+        <label htmlFor="">Enfermedad</label>
+        <textarea name="enfermedad" id="" cols="30" rows="2" class="form-control" [value]="paciente_.enfermedad"
+                  readOnly="readonly"></textarea>
+      </div>
+      <div class="mb-3 form-check">
+        <div *ngIf="paciente_.revisado === true;then content1 else other_content1">here is ignored</div>
+        <ng-template #content1>
+          <input type="checkbox" class="form-check-input" name="revisado" checked/>
+          <label className="form-check-label" htmlFor="exampleCheck1"
+                 readonly="readonly">Revisado</label>
+        </ng-template>
+        <ng-template #other_content1>
+          <input type="checkbox" class="form-check-input" name="revisado"/>
+          <label className="form-check-label" htmlFor="exampleCheck1"
+                 readonly="readonly">Revisado</label>
+        </ng-template>
+
+      </div>
+      <div className="form-group">
+        <div className="btn-group" role="group" aria-label="Basic example">
+          <button routerLink="/registro/actualizar/{{paciente_._id}}" type="button" class="btn btn-primary">Modificar</button>
+          &nbsp;
+          <button class="btn btn-danger" >Eliminar</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 text-center">
+      <br />
+      <br />
+      <img src="{{apiUrl + 'getFotoPersonal/' + paciente_._id}}" class="img img-thumbnail" alt="">
+      <angular-file-uploader (ApiResponse)="this.router.navigateByUrl('/registro/listar-todos')"
+                             [config]="afuConfig" >
+      </angular-file-uploader>
+    </div>
+  </div>
+</div>
